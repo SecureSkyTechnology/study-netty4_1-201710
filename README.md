@@ -19,17 +19,17 @@
 * ビルド
 ```
 cd study-netty4_1-201710/
-mvnw clean package
+./mvnw clean package
 ```
 * 実行(jarファイルから)
 ```
-java -jar (...)/tcpecho-plainjava-(version).jar
-java -jar (...)/tcpecho-netty-(version).jar
+java -jar study-netty4_1-201710/tcpecho-plainjava/target/tcpecho-plainjava-(version).jar
+java -jar study-netty4_1-201710/tcpecho-netty/target/tcpecho-netty-(version).jar
 ```
 * 実行(Mavenプロジェクトから直接実行)
 ```
-cd study-netty4_1-201710/tcpecho-plainjava/ && mvnw exec:java
-cd study-netty4_1-201710/tcpecho-netty/     && mvnw exec:java
+cd study-netty4_1-201710/tcpecho-plainjava/ && ../mvnw exec:java
+cd study-netty4_1-201710/tcpecho-netty/     && ../mvnw exec:java
 ```
 
 * 実行すると、どのモードで起動するかメニューが表示される。
