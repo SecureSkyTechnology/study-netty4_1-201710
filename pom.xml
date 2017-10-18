@@ -1,0 +1,120 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.secureskytech.study-netty4_1-201710</groupId>
+  <artifactId>study-netty4_1-201710-parent</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>pom</packaging>
+
+  <name>study-netty4_1-201710-parent</name>
+  <description>Netty 4.1.x studies and exercise sample code (2017-09 to 2017-10)</description>
+  <url>https://github.com/SecureSkyTechnology/study-netty4_1-201710</url>
+
+  <organization>
+    <name>Secure Sky Technology, Inc.</name>
+    <url>https://www.securesky-tech.com/</url>
+  </organization>
+
+  <modules>
+    <module>tcpecho-plainjava</module>
+    <module>tcpecho-netty</module>
+  </modules>
+
+  <properties>
+    <!-- see : https://maven.apache.org/general.html#encoding-warning  -->
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    <java.version.source>1.8</java.version.source>
+    <java.version.target>1.8</java.version.target>
+    <java.compiler.debug>true</java.compiler.debug>
+
+    <exec.mainClass>###overwrite-it###</exec.mainClass>
+  </properties>
+
+  <dependencyManagement>
+    <dependencies>
+
+      <dependency>
+        <groupId>com.google.guava</groupId>
+        <artifactId>guava</artifactId>
+        <version>23.2-jre</version>
+      </dependency>
+
+      <dependency>
+        <groupId>ch.qos.logback</groupId>
+        <artifactId>logback-classic</artifactId>
+        <version>1.2.3</version>
+      </dependency>
+
+      <dependency>
+        <groupId>io.netty</groupId>
+        <artifactId>netty-all</artifactId>
+        <version>4.1.15.Final</version>
+      </dependency>
+
+      <dependency>
+        <groupId>junit</groupId>
+        <artifactId>junit</artifactId>
+        <version>4.12</version>
+        <scope>test</scope>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+
+  <build>
+    <pluginManagement>
+      <plugins>
+
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <version>3.6.1</version>
+          <configuration>
+            <source>${java.version.source}</source>
+            <target>${java.version.target}</target>
+            <encoding>${project.build.sourceEncoding}</encoding>
+            <debug>${java.compiler.debug}</debug>
+          </configuration>
+        </plugin>
+
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-shade-plugin</artifactId>
+          <version>3.1.0</version>
+          <executions>
+            <execution>
+              <phase>package</phase>
+              <goals>
+                <goal>shade</goal>
+              </goals>
+              <configuration>
+                <createDependencyReducedPom>false</createDependencyReducedPom>
+                <transformers>
+                  <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                    <manifestEntries>
+                      <Main-Class>${exec.mainClass}</Main-Class>
+                      <X-Compile-Source-JDK>${java.version.source}</X-Compile-Source-JDK>
+                      <X-Compile-Target-JDK>${java.version.target}</X-Compile-Target-JDK>
+                      <Specification-Title>${project.name}</Specification-Title>
+                      <Specification-Version>${project.version}</Specification-Version>
+                    </manifestEntries>
+                  </transformer>
+                </transformers>
+              </configuration>
+            </execution>
+          </executions>
+        </plugin>
+
+        <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>exec-maven-plugin</artifactId>
+          <version>1.6.0</version>
+        </plugin>
+
+      </plugins>
+    </pluginManagement>
+  </build>
+
+</project>
