@@ -42,7 +42,7 @@ public class Main {
                 new MultiThreadChannelServer(port).start();
                 break;
             case "selector-server-singlethread":
-                new MultiThreadChannelServer(port).start();
+                new SingleThreadSelectorServer(port).start();
                 break;
             default:
                 System.exit(-1);
