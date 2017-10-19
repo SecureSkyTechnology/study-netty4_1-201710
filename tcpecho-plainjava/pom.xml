@@ -11,7 +11,7 @@
   <parent>
     <groupId>com.secureskytech.study-netty4_1-201710</groupId>
     <artifactId>study-netty4_1-201710-parent</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0</version>
   </parent>
 
   <properties>
